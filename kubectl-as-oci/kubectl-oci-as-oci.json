@@ -1,0 +1,60 @@
+[
+  {
+    "Ref": "docker.io/ipedrazas/kubectl-oci:v1.26.2@sha256:4b32d70743997ad4f6d40cef2c00325b4d656cac34d7a981f4f83f8969df6aa8",
+    "Descriptor": {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:4b32d70743997ad4f6d40cef2c00325b4d656cac34d7a981f4f83f8969df6aa8",
+      "size": 506,
+      "platform": {
+        "architecture": "amd64",
+        "os": "linux"
+      }
+    },
+    "Raw": "ewogICAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsCiAgICJzY2hlbWFWZXJzaW9uIjogMiwKICAgImNvbmZpZyI6IHsKICAgICAgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwKICAgICAgImRpZ2VzdCI6ICJzaGEyNTY6ZjM2NTY0MmIxYjY0NmZjODM4MDk0OTFhMDZkYzFmMTkxMDk5MmU3Yzg3NDZhZTI0ZTBlMWMxZmNiMmQ1NzZkYyIsCiAgICAgICJzaXplIjogODIzCiAgIH0sCiAgICJsYXllcnMiOiBbCiAgICAgIHsKICAgICAgICAgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmxheWVyLnYxLnRhcitnemlwIiwKICAgICAgICAgImRpZ2VzdCI6ICJzaGEyNTY6YTI5MmI5YTY0MDljOTViZGNlOTU0MzAwODYyOWIyY2VlNWE3MmE1NTc5NDllNjdmNTViMTgwYzMyMWE3NzYyYyIsCiAgICAgICAgICJzaXplIjogMTUyNjcwOTUKICAgICAgfQogICBdCn0=",
+    "OCIManifest": {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "schemaVersion": 2,
+      "config": {
+        "mediaType": "application/vnd.oci.image.config.v1+json",
+        "digest": "sha256:f365642b1b646fc83809491a06dc1f1910992e7c8746ae24e0e1c1fcb2d576dc",
+        "size": 823
+      },
+      "layers": [
+        {
+          "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "digest": "sha256:a292b9a6409c95bdce9543008629b2cee5a72a557949e67f55b180c321a7762c",
+          "size": 15267095
+        }
+      ]
+    }
+  },
+  {
+    "Ref": "docker.io/ipedrazas/kubectl-oci:v1.26.2@sha256:1fac47a174aeedb43172641706f80cf8268d7b7d2290cb38fd59333db88c034b",
+    "Descriptor": {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:1fac47a174aeedb43172641706f80cf8268d7b7d2290cb38fd59333db88c034b",
+      "size": 506,
+      "platform": {
+        "architecture": "arm64",
+        "os": "linux"
+      }
+    },
+    "Raw": "ewogICAibWVkaWFUeXBlIjogImFwcGxpY2F0aW9uL3ZuZC5vY2kuaW1hZ2UubWFuaWZlc3QudjEranNvbiIsCiAgICJzY2hlbWFWZXJzaW9uIjogMiwKICAgImNvbmZpZyI6IHsKICAgICAgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmNvbmZpZy52MStqc29uIiwKICAgICAgImRpZ2VzdCI6ICJzaGEyNTY6MGNhN2I3ZDE1NTUyYWI4NTQxMjYyMTU0MGU3ODg4YTIxNWZkYzUyMzQzZGFlMjE4NjJmYmQwZWRkMTU0NGUxNyIsCiAgICAgICJzaXplIjogODIzCiAgIH0sCiAgICJsYXllcnMiOiBbCiAgICAgIHsKICAgICAgICAgIm1lZGlhVHlwZSI6ICJhcHBsaWNhdGlvbi92bmQub2NpLmltYWdlLmxheWVyLnYxLnRhcitnemlwIiwKICAgICAgICAgImRpZ2VzdCI6ICJzaGEyNTY6MTE1MTgxNWM3MzcyNzNhNDMzNDFkOWY0NWNkNDBjZDVjYmJhODNmZmJlNmRiNDc4NWIwMzg3NzdhM2RkYzA3NyIsCiAgICAgICAgICJzaXplIjogMTM4MDIyNDYKICAgICAgfQogICBdCn0=",
+    "OCIManifest": {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "schemaVersion": 2,
+      "config": {
+        "mediaType": "application/vnd.oci.image.config.v1+json",
+        "digest": "sha256:0ca7b7d15552ab85412621540e7888a215fdc52343dae21862fbd0edd1544e17",
+        "size": 823
+      },
+      "layers": [
+        {
+          "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "digest": "sha256:1151815c737273a43341d9f45cd40cd5cbba83ffbe6db4785b038777a3ddc077",
+          "size": 13802246
+        }
+      ]
+    }
+  }
+]
