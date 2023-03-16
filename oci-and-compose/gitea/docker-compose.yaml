@@ -27,6 +27,12 @@ services:
     expose:
       - 5432
 
+  # 
+  # 
+  # This service is used to restore the database from a backup
+  # 
+  # 
+
   restore:
     image: postgres:alpine
     command: ["psql", "-U", "gitea", "-d", "gitea", "-h", "db", "-f", "/data/gitea.tar"]
@@ -44,13 +50,22 @@ services:
     image: ipedrazas/ktools:latest
     user: root
     working_dir: /data
-    command: ["oras","pull", "registry-1.docker.io/ipedrazas/postgres-oci:latest"]
+    env_file:
+      - .env
+    command: oras pull registry-1.docker.io/$HUB_USER/postgres-oci:latest
     volumes:
       - tmp_data:/data
     depends_on:
       - db
     profiles:
       - ops
+
+
+  # 
+  # 
+  # This service is used to restore the database from a backup
+  # 
+  # 
   
   backup:
     image: postgres:alpine
@@ -74,8 +89,8 @@ services:
       - /bin/sh
       - -c
       - |
-        oras login -u ipedrazas -p $HUB_TOKEN registry-1.docker.io
-        oras push registry-1.docker.io/ipedrazas/postgres-oci:latest gitea.tar
+        oras login -u $HUB_USER -p $HUB_TOKEN registry-1.docker.io
+        oras push registry-1.docker.io/$HUB_USER/postgres-oci:latest gitea.tar
     working_dir: /data
     volumes:
       - tmp_data:/data
