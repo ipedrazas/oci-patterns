@@ -1,0 +1,92 @@
+services:
+  gitea:
+    image: gitea/gitea:latest
+    environment:
+      - DB_TYPE=postgres
+      - DB_HOST=db:5432
+      - DB_NAME=gitea
+      - DB_USER=gitea
+      - DB_PASSWD=gitea
+    restart: always
+    volumes:
+      - git_data:/data
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+
+  db:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_USER=gitea
+      - POSTGRES_PASSWORD=gitea
+      - POSTGRES_DB=gitea
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    expose:
+      - 5432
+
+  restore:
+    image: postgres:alpine
+    command: ["psql", "-U", "gitea", "-d", "gitea", "-h", "db", "-f", "/data/gitea.tar"]
+    volumes:
+      - tmp_data:/data
+    environment:
+      - PGPASSWORD=gitea
+    depends_on:
+      data-pull:
+          condition: service_completed_successfully
+    profiles:
+      - ops
+
+  data-pull:
+    image: ipedrazas/ktools:latest
+    user: root
+    working_dir: /data
+    command: ["oras","pull", "registry-1.docker.io/ipedrazas/postgres-oci:latest"]
+    volumes:
+      - tmp_data:/data
+    depends_on:
+      - db
+    profiles:
+      - ops
+  
+  backup:
+    image: postgres:alpine
+    command: ["pg_dumpall", "-c", "-h", "db", "-U", "gitea", "-v", "-f", "gitea.tar"]
+    working_dir: /data
+    volumes:
+      - tmp_data:/data
+    environment:
+      - PGPASSWORD=gitea
+    depends_on:
+      - db
+    profiles:
+      - ops
+
+  data-push:
+    image: ipedrazas/ktools:latest
+    user: root
+    env_file:
+      - .env
+    command:
+      - /bin/sh
+      - -c
+      - |
+        oras login -u ipedrazas -p $HUB_TOKEN registry-1.docker.io
+        oras push registry-1.docker.io/ipedrazas/postgres-oci:latest gitea.tar
+    working_dir: /data
+    volumes:
+      - tmp_data:/data
+    depends_on:
+      backup:
+        condition: service_completed_successfully
+    profiles:
+      - ops
+
+volumes:
+  db_data:
+  tmp_data:
+  git_data:
+  

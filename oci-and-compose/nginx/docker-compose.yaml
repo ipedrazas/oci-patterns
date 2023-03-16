@@ -1,0 +1,21 @@
+services:
+  gitea:
+    image: nginx:latest
+    volumes:
+      - web_data:/usr/share/nginx/html
+    ports:
+      - 8000:80
+    depends_on:
+      website-restore:
+        condition: service_completed_successfully
+
+  website-restore:
+    image: ipedrazas/ktools:latest
+    user: root
+    command: ["oras","pull", "registry-1.docker.io/ipedrazas/web-oci:latest", "-o", "/usr/share/nginx/html"]
+    volumes:
+      - web_data:/usr/share/nginx/html
+
+volumes:
+  web_data:
+  
